@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>霓虹贪吃蛇 | Neon Snake</title>
+    <link rel="stylesheet" href="snake-style.css">
+</head>
+<body>
+    <!-- 主菜单 -->
+    <div id="menuScreen" class="screen active">
+        <div class="menu-container">
+            <h1 class="game-title">
+                <span class="neon-text">霓虹贪吃蛇</span>
+                <span class="subtitle">NEON SNAKE</span>
+            </h1>
+
+            <div class="menu-section">
+                <h3>难度选择</h3>
+                <div class="difficulty-buttons">
+                    <button class="btn-difficulty" data-difficulty="easy">简单</button>
+                    <button class="btn-difficulty active" data-difficulty="normal">普通</button>
+                    <button class="btn-difficulty" data-difficulty="hard">困难</button>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="obstacleToggle">
+                    <span class="checkbox-custom"></span>
+                    <span>启用障碍物模式</span>
+                </label>
+            </div>
+
+            <div class="menu-section">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="soundToggle" checked>
+                    <span class="checkbox-custom"></span>
+                    <span>启用音效</span>
+                </label>
+            </div>
+
+            <div class="menu-buttons">
+                <button id="startBtn" class="btn-primary">开始游戏</button>
+                <button id="leaderboardBtn" class="btn-secondary">排行榜</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 游戏界面 -->
+    <div id="gameScreen" class="screen">
+        <div class="game-container">
+            <!-- 顶部信息栏 -->
+            <div class="game-header">
+                <div class="info-item">
+                    <span class="info-label">分数</span>
+                    <span id="scoreDisplay" class="info-value">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">难度</span>
+                    <span id="difficultyDisplay" class="info-value">普通</span>
+                </div>
+                <div class="info-item" id="effectDisplay" style="display: none;">
+                    <span class="effect-icon"></span>
+                    <span id="effectText" class="info-value"></span>
+                </div>
+                <button id="soundToggleBtn" class="btn-icon">
+                    <span id="soundIcon">🔊</span>
+                </button>
+            </div>
+
+            <!-- 游戏网格 -->
+            <div id="gameGrid" class="game-grid"></div>
+
+            <!-- 底部控制提示 -->
+            <div class="game-footer">
+                <div class="controls-hint">
+                    <span>方向键/WASD: 移动</span>
+                    <span>空格: 暂停</span>
+                    <span>ESC: 菜单</span>
+                    <span>R: 重新开始</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 暂停界面 -->
+    <div id="pauseOverlay" class="overlay">
+        <div class="overlay-content">
+            <h2 class="neon-text">游戏暂停</h2>
+            <div class="overlay-buttons">
+                <button id="resumeBtn" class="btn-primary">继续游戏</button>
+                <button id="restartBtn" class="btn-secondary">重新开始</button>
+                <button id="menuBtn" class="btn-secondary">返回菜单</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 游戏结束界面 -->
+    <div id="gameOverOverlay" class="overlay">
+        <div class="overlay-content">
+            <h2 class="neon-text game-over-title">游戏结束</h2>
+            <div class="final-score">
+                <span class="final-score-label">最终分数</span>
+                <span id="finalScore" class="final-score-value">0</span>
+            </div>
+            <div id="newRecordBadge" class="new-record" style="display: none;">
+                <span>新纪录！</span>
+            </div>
+            <div class="overlay-buttons">
+                <button id="playAgainBtn" class="btn-primary">再玩一次</button>
+                <button id="viewLeaderboardBtn" class="btn-secondary">查看排行榜</button>
+                <button id="backToMenuBtn" class="btn-secondary">返回菜单</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 排行榜界面 -->
+    <div id="leaderboardOverlay" class="overlay">
+        <div class="overlay-content leaderboard-content">
+            <h2 class="neon-text">排行榜</h2>
+            <div id="leaderboardList" class="leaderboard-list"></div>
+            <div class="overlay-buttons">
+                <button id="closeLeaderboardBtn" class="btn-secondary">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="snake-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,644 @@
+/* ========== 全局样式 ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: #0a0e27;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 背景网格效果 */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(26, 31, 58, 0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26, 31, 58, 0.5) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: 0;
+}
+
+/* ========== 屏幕切换 ========== */
+.screen {
+    display: none;
+    position: relative;
+    z-index: 1;
+}
+
+.screen.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ========== 霓虹灯文字效果 ========== */
+.neon-text {
+    color: #00f3ff;
+    text-shadow:
+        0 0 5px #00f3ff,
+        0 0 10px #00f3ff,
+        0 0 20px #00f3ff,
+        0 0 40px #00f3ff,
+        0 0 80px #00f3ff;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        text-shadow:
+            0 0 5px #00f3ff,
+            0 0 10px #00f3ff,
+            0 0 20px #00f3ff,
+            0 0 40px #00f3ff,
+            0 0 80px #00f3ff;
+    }
+    50% {
+        text-shadow:
+            0 0 2px #00f3ff,
+            0 0 5px #00f3ff,
+            0 0 10px #00f3ff,
+            0 0 20px #00f3ff,
+            0 0 40px #00f3ff;
+    }
+}
+
+/* ========== 主菜单样式 ========== */
+.menu-container {
+    background: rgba(26, 31, 58, 0.8);
+    backdrop-filter: blur(10px);
+    border: 2px solid #00f3ff;
+    border-radius: 20px;
+    padding: 40px 50px;
+    box-shadow:
+        0 0 20px rgba(0, 243, 255, 0.5),
+        inset 0 0 20px rgba(0, 243, 255, 0.1);
+    text-align: center;
+    min-width: 400px;
+}
+
+.game-title {
+    margin-bottom: 40px;
+}
+
+.game-title .neon-text {
+    display: block;
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    display: block;
+    font-size: 1.2em;
+    color: #a855f7;
+    letter-spacing: 5px;
+    text-shadow:
+        0 0 5px #a855f7,
+        0 0 10px #a855f7;
+}
+
+.menu-section {
+    margin-bottom: 30px;
+}
+
+.menu-section h3 {
+    color: #00f3ff;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+/* ========== 按钮样式 ========== */
+.difficulty-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-difficulty {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid #666;
+    border-radius: 10px;
+    color: #ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1em;
+}
+
+.btn-difficulty:hover {
+    border-color: #00f3ff;
+    color: #00f3ff;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+}
+
+.btn-difficulty.active {
+    background: #00f3ff;
+    color: #0a0e27;
+    border-color: #00f3ff;
+    box-shadow:
+        0 0 10px #00f3ff,
+        0 0 20px #00f3ff;
+}
+
+.btn-primary {
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #00f3ff, #a855f7);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.8);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-secondary {
+    padding: 12px 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #00f3ff;
+    border-radius: 10px;
+    color: #00f3ff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: rgba(0, 243, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-icon {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #00f3ff;
+    border-radius: 10px;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.2em;
+}
+
+.btn-icon:hover {
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+}
+
+/* ========== 复选框样式 ========== */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    justify-content: center;
+}
+
+.checkbox-label input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox-custom {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #00f3ff;
+    border-radius: 5px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkbox-custom {
+    background: #00f3ff;
+    box-shadow: 0 0 10px #00f3ff;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkbox-custom::after {
+    content: '✓';
+    position: absolute;
+    color: #0a0e27;
+    font-size: 18px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ========== 游戏界面 ========== */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.game-header {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    background: rgba(26, 31, 58, 0.8);
+    padding: 15px 30px;
+    border-radius: 15px;
+    border: 2px solid #00f3ff;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-label {
+    font-size: 0.9em;
+    color: #888;
+}
+
+.info-value {
+    font-size: 1.5em;
+    color: #00f3ff;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00f3ff;
+}
+
+.effect-icon {
+    font-size: 1.5em;
+}
+
+/* ========== 游戏网格 ========== */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(25, 22px);
+    grid-template-rows: repeat(25, 22px);
+    gap: 1px;
+    background: #0a0e27;
+    border: 3px solid #00f3ff;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow:
+        0 0 30px rgba(0, 243, 255, 0.5),
+        inset 0 0 30px rgba(0, 243, 255, 0.1);
+}
+
+.grid-cell {
+    background: rgba(26, 31, 58, 0.3);
+    border-radius: 2px;
+    transition: all 0.1s ease;
+}
+
+/* 蛇头 */
+.snake-head {
+    background: #00f3ff;
+    box-shadow:
+        0 0 10px #00f3ff,
+        0 0 20px #00f3ff,
+        inset 0 0 10px #00f3ff;
+    border-radius: 3px;
+    animation: snakePulse 0.5s infinite;
+}
+
+@keyframes snakePulse {
+    0%, 100% {
+        box-shadow:
+            0 0 10px #00f3ff,
+            0 0 20px #00f3ff,
+            inset 0 0 10px #00f3ff;
+    }
+    50% {
+        box-shadow:
+            0 0 15px #00f3ff,
+            0 0 30px #00f3ff,
+            inset 0 0 15px #00f3ff;
+    }
+}
+
+/* 蛇身 */
+.snake-body {
+    background: linear-gradient(135deg, #00f3ff, #a855f7);
+    box-shadow:
+        0 0 8px rgba(0, 243, 255, 0.6),
+        inset 0 0 5px rgba(168, 85, 247, 0.6);
+    border-radius: 3px;
+}
+
+/* 食物样式 */
+.food-normal {
+    background: #ff006e;
+    box-shadow:
+        0 0 15px #ff006e,
+        0 0 30px #ff006e,
+        inset 0 0 10px #ff006e;
+    border-radius: 50%;
+    animation: foodPulse 1s infinite;
+}
+
+.food-speed {
+    background: #ff9500;
+    box-shadow:
+        0 0 15px #ff9500,
+        0 0 30px #ff9500,
+        inset 0 0 10px #ff9500;
+    border-radius: 50%;
+    animation: foodPulse 0.8s infinite;
+}
+
+.food-slow {
+    background: #0066ff;
+    box-shadow:
+        0 0 15px #0066ff,
+        0 0 30px #0066ff,
+        inset 0 0 10px #0066ff;
+    border-radius: 50%;
+    animation: foodPulse 1.2s infinite;
+}
+
+.food-bonus {
+    background: #ffd700;
+    box-shadow:
+        0 0 20px #ffd700,
+        0 0 40px #ffd700,
+        inset 0 0 15px #ffd700;
+    border-radius: 50%;
+    animation: foodPulse 0.6s infinite;
+}
+
+@keyframes foodPulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    50% {
+        transform: scale(1.2);
+        filter: brightness(1.5);
+    }
+}
+
+/* 障碍物 */
+.obstacle {
+    background: #ff0040;
+    box-shadow:
+        0 0 10px #ff0040,
+        0 0 20px #ff0040,
+        inset 0 0 10px #ff0040;
+    border-radius: 3px;
+}
+
+/* ========== 游戏底部 ========== */
+.game-footer {
+    background: rgba(26, 31, 58, 0.8);
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #00f3ff;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+}
+
+.controls-hint {
+    display: flex;
+    gap: 20px;
+    font-size: 0.9em;
+    color: #888;
+}
+
+.controls-hint span {
+    color: #00f3ff;
+}
+
+/* ========== 遮罩层样式 ========== */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 14, 39, 0.95);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.overlay-content {
+    background: rgba(26, 31, 58, 0.95);
+    border: 3px solid #00f3ff;
+    border-radius: 20px;
+    padding: 40px 50px;
+    text-align: center;
+    box-shadow:
+        0 0 30px rgba(0, 243, 255, 0.6),
+        inset 0 0 30px rgba(0, 243, 255, 0.1);
+    min-width: 400px;
+}
+
+.overlay-content h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.overlay-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* ========== 游戏结束界面 ========== */
+.game-over-title {
+    animation: shake 0.5s, blink 1s infinite;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0.5; }
+}
+
+.final-score {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.final-score-label {
+    font-size: 1.2em;
+    color: #888;
+}
+
+.final-score-value {
+    font-size: 3em;
+    color: #00f3ff;
+    font-weight: bold;
+    text-shadow:
+        0 0 10px #00f3ff,
+        0 0 20px #00f3ff,
+        0 0 40px #00f3ff;
+}
+
+.new-record {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #ffd700, #ff9500);
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    animation: pulse 1s infinite;
+}
+
+/* ========== 排行榜样式 ========== */
+.leaderboard-content {
+    max-width: 600px;
+}
+
+.leaderboard-list {
+    max-height: 400px;
+    overflow-y: auto;
+    margin: 20px 0;
+}
+
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.leaderboard-item:hover {
+    background: rgba(0, 243, 255, 0.1);
+    border-color: #00f3ff;
+}
+
+.leaderboard-item.current {
+    border-color: #ffd700;
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.leaderboard-rank {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #00f3ff;
+    min-width: 40px;
+}
+
+.leaderboard-info {
+    flex: 1;
+    text-align: left;
+    margin: 0 20px;
+}
+
+.leaderboard-score {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #a855f7;
+}
+
+.leaderboard-details {
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 5px;
+}
+
+.leaderboard-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.leaderboard-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.leaderboard-list::-webkit-scrollbar-thumb {
+    background: #00f3ff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00f3ff;
+}
+
+/* ========== 响应式设计 ========== */
+@media (max-width: 768px) {
+    .game-grid {
+        grid-template-columns: repeat(25, 16px);
+        grid-template-rows: repeat(25, 16px);
+    }
+
+    .menu-container,
+    .overlay-content {
+        min-width: 320px;
+        padding: 30px;
+    }
+
+    .game-title .neon-text {
+        font-size: 2em;
+    }
+
+    .controls-hint {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-grid {
+        grid-template-columns: repeat(25, 12px);
+        grid-template-rows: repeat(25, 12px);
+    }
+
+    .game-header {
+        gap: 15px;
+        padding: 10px 15px;
+    }
+
+    .info-value {
+        font-size: 1.2em;
+    }
+}
